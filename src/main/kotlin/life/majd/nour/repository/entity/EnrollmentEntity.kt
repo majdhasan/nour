@@ -7,8 +7,8 @@ import java.util.*
 
 @Table(name = "enrollment")
 data class EnrollmentEntity(
-    @Id val id : UUID?,
+    @Id val id : UUID? = null,
     val course : UUID,
     val student : UUID,
-    val paid : Boolean?
+    val paid : Boolean? = false
 )

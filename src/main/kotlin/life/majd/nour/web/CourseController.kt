@@ -7,18 +7,21 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.function.ServerResponse
+import java.util.*
 
 @RestController
-@RequestMapping(
-    "/course", consumes = [MediaType.APPLICATION_JSON_VALUE]
-)
-class CourseController(
-    val courseService: CourseService
-) {
+@RequestMapping("/course", consumes = [MediaType.APPLICATION_JSON_VALUE])
+class CourseController(val courseService: CourseService) {
 
     @GetMapping("")
     fun getCourses(): ResponseEntity<List<CourseEntity>> {
         return ResponseEntity(courseService.getCourses(), HttpStatus.OK)
+    }
+
+    @GetMapping("/{id}")
+    fun getCourse(@PathVariable id: UUID): ServerResponse {
+        return ServerResponse.ok().body(courseService.getCourse(id))
     }
 
     @PostMapping("")

@@ -2,25 +2,17 @@ package life.majd.nour.domain.service
 
 import life.majd.nour.repository.CourseRepository
 import life.majd.nour.repository.entity.CourseEntity
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class CourseService(
-    val courseRepository: CourseRepository
-) {
+class CourseService(val courseRepository: CourseRepository) {
 
-    fun createCourse(courseEntity: CourseEntity): CourseEntity {
-        return courseRepository.save(courseEntity)
-    }
+    fun createCourse(courseEntity: CourseEntity) = courseRepository.save(courseEntity)
+    fun getCourse(id: UUID) = courseRepository.findById(id).orElseThrow { NotFoundException() }
 
-    fun getCourses(): List<CourseEntity> {
-        val all = courseRepository.findAll()
-        return all.toList()
-    }
+    fun getCourses() = courseRepository.findAll().toList()
 
-    fun getCoursesByTutor(tutorId: UUID): List<CourseEntity> {
-        val all = courseRepository.findAllByTutorId(tutorId)
-        return all.toList()
-    }
+    fun getCoursesByTutor(tutorId: UUID) = courseRepository.findAllByTutorId(tutorId).toList()
 }

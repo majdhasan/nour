@@ -1,1 +1,7 @@
-# Nour - Knowledge on demand
+# eNour - Knowledge on demand
+
+
+improvements:
+
+- make email of tutor/student unique
+- 

@@ -10,5 +10,6 @@ data class CourseEntity(
     val id : UUID? = null,
     val name : String,
     val description: String,
-    val tutorId: UUID
+    val tutorId: UUID,
+    val isPublic: Boolean,
 )
