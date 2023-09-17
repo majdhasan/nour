@@ -7,4 +7,5 @@ import java.util.*
 
 interface EnrollmentCodeRepository : CrudRepository<EnrollmentCodeEntity, UUID> {
 
+    fun findByCodeAndCourseId(code: String, courseId: UUID): List<EnrollmentCodeEntity>
 }

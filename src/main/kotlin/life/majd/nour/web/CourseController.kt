@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.servlet.function.ServerResponse
 import java.util.*
 
 @RestController
@@ -15,14 +14,11 @@ import java.util.*
 class CourseController(val courseService: CourseService) {
 
     @GetMapping("")
-    fun getCourses(): ResponseEntity<List<CourseEntity>> {
-        return ResponseEntity(courseService.getCourses(), HttpStatus.OK)
-    }
+    fun getCourses() = ResponseEntity(courseService.getCourses(), HttpStatus.OK)
 
     @GetMapping("/{id}")
-    fun getCourse(@PathVariable id: UUID): ServerResponse {
-        return ServerResponse.ok().body(courseService.getCourse(id))
-    }
+    fun getCourse(@PathVariable id: UUID) =
+        ResponseEntity(courseService.getCourse(id), HttpStatus.OK)
 
     @PostMapping("")
     fun createCourse(@RequestBody courseRequest: CourseRequest): ResponseEntity<CourseEntity> {

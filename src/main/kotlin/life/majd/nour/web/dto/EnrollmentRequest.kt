@@ -5,7 +5,8 @@ import java.util.*
 
 data class EnrollmentRequest(
     val courseId: UUID,
-    val studentId: UUID
+    val studentId: UUID,
+    val enrollmentCode: String?
 ) {
 
     fun toEntity() = EnrollmentEntity(

@@ -19,7 +19,7 @@ class EnrollmentController(val enrollmentService: EnrollmentService) {
 
     @PostMapping("")
     fun createEnrollment(@RequestBody enrollmentRequest: EnrollmentRequest): ResponseEntity<EnrollmentEntity> {
-        val createdCourse = enrollmentService.createEnrollment(enrollmentRequest.toEntity())
+        val createdCourse = enrollmentService.enrollStudent(enrollmentRequest)
         return ResponseEntity(createdCourse, HttpStatus.CREATED)
     }
 
