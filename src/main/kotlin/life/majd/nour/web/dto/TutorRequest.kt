@@ -2,15 +2,24 @@ package life.majd.nour.web.dto
 
 import life.majd.nour.repository.entity.TutorEntity
 
-data class TutorRequest(
+sealed class TutorRequest {
 
-    val name: String,
-    val email: String
-) {
+    class Register(
+        private val email: String,
+        private val password: String,
+        private val name: String
+    ) {
 
-    fun toEntity() = TutorEntity(
-        name = name,
-        email = email
+        fun toEntity() = TutorEntity(
+            name = name,
+            email = email,
+            password = password
+        )
+    }
+
+    class Login(
+        val email: String,
+        val password: String
     )
 }
 

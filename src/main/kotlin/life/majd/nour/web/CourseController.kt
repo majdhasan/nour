@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
-@RequestMapping("/course", consumes = [MediaType.APPLICATION_JSON_VALUE])
+@RequestMapping("/api/v1/course", consumes = [MediaType.APPLICATION_JSON_VALUE])
 class CourseController(val courseService: CourseService) {
 
     @GetMapping("")

@@ -10,9 +10,10 @@ import java.util.*
 class LessonService(val lessonRepository: LessonRepository) {
 
     fun createLesson(lessonEntity: LessonEntity) = lessonRepository.save(lessonEntity)
-    fun getLesson(id: UUID) = lessonRepository.findById(id).orElseThrow { NotFoundException() }
+    fun getLesson(id: UUID): LessonEntity =
+        lessonRepository.findById(id).orElseThrow { NotFoundException() }
 
-    fun getLessons() = lessonRepository.findAll()
+    fun getLessons(): List<LessonEntity> = lessonRepository.findAll().toList()
 
     fun getLessonsByCourseId(courseId: UUID) = lessonRepository.findAll().toList()
 

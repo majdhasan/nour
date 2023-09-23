@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository
 import java.util.*
 
 interface TutorRepository : CrudRepository<TutorEntity, UUID> {
+
+    fun findByEmail(email: String): TutorEntity?
 }

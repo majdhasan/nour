@@ -1,0 +1,2 @@
+ALTER TABLE nour.tutor
+    ADD COLUMN IF NOT EXISTS password TEXT;

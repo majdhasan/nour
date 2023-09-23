@@ -8,5 +8,6 @@ import java.util.*
 data class TutorEntity(
     @Id val id: UUID? = null,
     val name: String,
-    val email: String
+    val email: String,
+    val password: String
 )
