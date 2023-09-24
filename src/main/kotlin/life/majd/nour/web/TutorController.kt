@@ -25,9 +25,9 @@ class TutorController(
         return ServerResponse.ok().body(tutorService.getTutors())
     }
 
-    @GetMapping("/{id}")
-    fun getTutor(@PathVariable id: String): ServerResponse {
-        return ServerResponse.ok().body(tutorService.getTutor(UUID.fromString(id)))
+    @GetMapping("/{email}")
+    fun getTutor(@PathVariable email: String): ServerResponse {
+        return ServerResponse.ok().body(tutorService.getTutor(email))
     }
 
     @PostMapping("/register")

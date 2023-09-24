@@ -11,6 +11,7 @@ import java.util.*
 
 @RestController
 @RequestMapping("/api/v1/course", consumes = [MediaType.APPLICATION_JSON_VALUE])
+@CrossOrigin(origins = ["http://localhost:3000"])
 class CourseController(val courseService: CourseService) {
 
     @GetMapping("")

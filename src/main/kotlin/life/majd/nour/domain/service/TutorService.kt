@@ -5,9 +5,9 @@ import life.majd.nour.repository.TutorRepository
 import life.majd.nour.repository.entity.TutorEntity
 import life.majd.nour.web.dto.TutorRequest
 import life.majd.nour.web.dto.TutorResponse
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
-import java.util.*
+import org.springframework.web.client.HttpClientErrorException
 
 @Service
 class TutorService(
@@ -19,10 +19,14 @@ class TutorService(
         return tutorRepository.findAll().toList()
     }
 
-    fun getTutor(tutorId: UUID): TutorResponse {
-        val tutor: TutorEntity =
-            tutorRepository.findById(tutorId).orElseThrow { NotFoundException() }
-        val courses = courseRepository.findAllByTutorId(tutorId)
+    fun getTutor(email: String): TutorResponse {
+
+        val tutor = tutorRepository.findByEmail(email)
+            ?: throw HttpClientErrorException(
+                HttpStatus.NOT_FOUND,
+                "Tutor not found"
+            )
+        val courses = courseRepository.findAllByTutorId(tutorId = tutor.id!!)
         return TutorResponse(tutor.name, courses)
 
     }
