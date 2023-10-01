@@ -4,13 +4,12 @@ import life.majd.nour.domain.service.CourseService
 import life.majd.nour.repository.entity.CourseEntity
 import life.majd.nour.web.dto.CourseRequest
 import org.springframework.http.HttpStatus
-import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RestController
-@RequestMapping("/api/v1/course", consumes = [MediaType.APPLICATION_JSON_VALUE])
+@RequestMapping("/api/v1/course")
 @CrossOrigin(origins = ["http://localhost:3000"])
 class CourseController(val courseService: CourseService) {
 
@@ -20,6 +19,11 @@ class CourseController(val courseService: CourseService) {
     @GetMapping("/{id}")
     fun getCourse(@PathVariable id: UUID) =
         ResponseEntity(courseService.getCourse(id), HttpStatus.OK)
+
+    @GetMapping("/{id}/lessons")
+    fun getCourseLessons(@PathVariable id: UUID) =
+        ResponseEntity(courseService.getCourse(id), HttpStatus.OK)
+
 
     @PostMapping("")
     fun createCourse(@RequestBody courseRequest: CourseRequest): ResponseEntity<CourseEntity> {

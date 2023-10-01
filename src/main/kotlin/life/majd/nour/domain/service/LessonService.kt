@@ -15,6 +15,6 @@ class LessonService(val lessonRepository: LessonRepository) {
 
     fun getLessons(): List<LessonEntity> = lessonRepository.findAll().toList()
 
-    fun getLessonsByCourseId(courseId: UUID) = lessonRepository.findAll().toList()
+    fun getLessonsByCourseId(courseId: UUID) = lessonRepository.findAllByCourseId(courseId).toList()
 
 }

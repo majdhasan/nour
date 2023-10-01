@@ -14,7 +14,7 @@ import java.util.*
 class LessonController(val lessonService: LessonService) {
 
     @GetMapping("")
-    fun getCourses() = ResponseEntity(lessonService.getLessons(), HttpStatus.OK)
+    fun getLessons() = ResponseEntity(lessonService.getLessons(), HttpStatus.OK)
 
     @GetMapping("/{id}")
     fun getLesson(@PathVariable id: UUID) =
