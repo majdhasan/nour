@@ -32,4 +32,7 @@ class CourseService(
     fun getCourses() = courseRepository.findAll().toList()
 
     fun getCoursesByTutor(tutorId: UUID) = courseRepository.findAllByTutorId(tutorId).toList()
+
+    fun getCoursesByNameContaining(text: String) = courseRepository.findAllContainingText(text)
+
 }

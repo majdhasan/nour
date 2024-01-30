@@ -13,9 +13,16 @@ import java.util.*
 @CrossOrigin(origins = ["http://localhost:3000"])
 class CourseController(val courseService: CourseService) {
 
-    @GetMapping("")
-    fun getCourses() = ResponseEntity(courseService.getCourses(), HttpStatus.OK)
+    @GetMapping
+    fun getCoursesByName(@RequestParam(required = false) name: String?): ResponseEntity<List<CourseEntity>> {
+        if (name != null) {
+            val filteredCourses = courseService.getCoursesByNameContaining(name)
+            return ResponseEntity(filteredCourses, HttpStatus.OK)
+        }
 
+        val allCourses = courseService.getCourses()
+        return ResponseEntity(allCourses, HttpStatus.OK)
+    }
     @GetMapping("/{id}")
     fun getCourse(@PathVariable id: UUID) =
         ResponseEntity(courseService.getCourse(id), HttpStatus.OK)
